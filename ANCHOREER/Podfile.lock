@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.5.0)
   - Differentiator (5.0.0)
   - Kingfisher (7.2.0)
   - RxCocoa (6.2.0):
@@ -23,6 +24,7 @@ PODS:
   - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.2)
   - Kingfisher (~> 7.0)
   - RxCocoa (~> 6.2.0)
   - RxDataSources (~> 5.0)
@@ -36,6 +38,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Differentiator
     - Kingfisher
     - RxCocoa
@@ -50,6 +53,7 @@ SPEC REPOS:
     - Toast-Swift
 
 SPEC CHECKSUMS:
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   Kingfisher: 3ac0b75b155cabc0e544877d1a4deea29feece92
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
@@ -63,6 +67,6 @@ SPEC CHECKSUMS:
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 8be122e4ad5b4443ce55cf46e74f02a42f7c6b0b
+PODFILE CHECKSUM: d8ef34b3d3f3a6195c75373b99f1f9b42a021471
 
 COCOAPODS: 1.11.2
