@@ -47,25 +47,12 @@ class MovieListVC: BaseVC {
     }
     
     private func bind() {
-        movieListView // 키보드 hide
-            .rx
-            .tapGesture()
-            .when(.recognized)
-            .bind { [weak self] _ in
-                guard let self = self else { return }
-                
-                self.view.endEditing(true)
-            }.disposed(by: bag)
-        
         movieListView.tfSearch
             .rx
             .text
             .orEmpty
-            .bind { [weak self] text in
-                guard let self = self else { return }
-                
-                self.vm.input.keyword.accept(text)
-            }.disposed(by: bag)
+            .bind(to: self.vm.input.keyword)
+            .disposed(by: bag)
         
         movieListView.tfSearch
             .rx
@@ -83,10 +70,9 @@ class MovieListVC: BaseVC {
                 guard let self = self else { return }
                 
                 let item = self.vm.output.list.value[indexPath.row]
-                guard let url = URL(string: item.link) else { return }
-                
-                let vc = MovieDetailVC(url: url)
+                let vc = MovieDetailVC(item: item)
                 let title = item.title.filterString(of: ["<b>", "</b>"])
+                
                 self.pushVC(vc, title: title)
             }.disposed(by: bag)
         
@@ -104,7 +90,7 @@ class MovieListVC: BaseVC {
 //                    .tap
 //                    .bind { [weak self] in
 //                        guard let self = self else { return }
-//                        
+//
 //                    }.disposed(by: cell.bag)
             }.disposed(by: bag)
     }

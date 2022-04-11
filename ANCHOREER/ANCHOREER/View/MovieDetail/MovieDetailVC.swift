@@ -12,13 +12,14 @@ import RxOptional
 import WebKit
 
 
-class MovieDetailVC: BaseVC {
-    private let url: URL
+class MovieDetailVC: BaseVC, WKUIDelegate, WKNavigationDelegate {
+    
+    private let item: MovieListDto.Response.Item
     
     private let movieDetailView = MovieDetailView()
     
-    init(url: URL) {
-        self.url = url
+    init(item: MovieListDto.Response.Item) {
+        self.item = item
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -30,17 +31,16 @@ class MovieDetailVC: BaseVC {
         super.viewDidLoad()
         
         initialize()
-        bind()
     }
     
     private func initialize() {
         view = movieDetailView
+        movieDetailView.setValue(item)
+        
+        guard let url = URL(string: item.link) else { return }
+        print("url: \(url)")
         
         let request = URLRequest(url: url)
         movieDetailView.wvView.load(request)
-    }
-    
-    private func bind() {
-        
     }
 }

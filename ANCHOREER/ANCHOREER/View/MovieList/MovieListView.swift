@@ -24,6 +24,7 @@ class MovieListView: BaseView {
         $0.leftViewMode = .always
     }
     let tvList = UITableView().then {
+        $0.keyboardDismissMode = .onDrag
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
     }

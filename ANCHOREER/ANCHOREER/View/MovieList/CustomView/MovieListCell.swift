@@ -19,6 +19,12 @@ class MovieListCell: UITableViewCell {
     
     private let ivImage = UIImageView()
     
+    private let svLabel = UIStackView().then {
+        $0.axis = .vertical
+        $0.alignment = .leading
+        $0.distribution = .fillProportionally
+    }
+    
     private let lblTitle = UILabel().then {
         $0.font = .boldSystemFont(ofSize: 18)
     }
@@ -58,8 +64,10 @@ class MovieListCell: UITableViewCell {
     private func setUP() {
         self.selectionStyle = .none
         
-        let views = [ivImage, lblTitle, lblDirector,
-                     lblActor, lblGrade, btnStar, viewDivider]
+        let arrangedSubviews = [lblTitle, lblDirector, lblActor, lblGrade]
+        svLabel.addArrangedSubviews(views: arrangedSubviews)
+        
+        let views = [ivImage, svLabel, btnStar, viewDivider]
         
         self.contentView.addSubviews(views)
     }
@@ -78,30 +86,14 @@ class MovieListCell: UITableViewCell {
             make.height.equalTo(btnStar.snp.width)
         }
         
-        lblTitle.snp.makeConstraints { make in
-            make.top.equalTo(ivImage)
-            make.left.equalTo(ivImage.snp.right).offset(5)
+        svLabel.snp.makeConstraints { make in
+            make.top.bottom.equalTo(ivImage)
+            make.left.equalTo(ivImage.snp.right).offset(10)
             make.right.equalTo(btnStar.snp.left)
         }
         
-        lblDirector.snp.makeConstraints { make in
-            make.top.equalTo(lblTitle.snp.bottom).offset(5)
-            make.left.equalTo(lblTitle)
-        }
-        
-        lblActor.snp.makeConstraints { make in
-            make.top.equalTo(lblDirector.snp.bottom).offset(5)
-            make.left.equalTo(lblDirector)
-            make.right.equalToSuperview()
-        }
-        
-        lblGrade.snp.makeConstraints { make in
-            make.top.equalTo(lblActor.snp.bottom).offset(5)
-            make.left.equalTo(lblActor)
-        }
-        
         viewDivider.snp.makeConstraints { make in
-            make.top.equalTo(lblGrade.snp.bottom).offset(10)
+            make.top.equalTo(ivImage.snp.bottom).offset(10)
             make.height.equalTo(0.5)
             make.left.right.bottom.equalToSuperview()
         }
@@ -118,5 +110,6 @@ class MovieListCell: UITableViewCell {
         lblDirector.text = "감독: \(data.director.replace(of: "|"))"
         lblActor.text = "출연: \(actors.replace(of: "|", with: ", "))"
         lblGrade.text = "평점: \(data.userRating)"
+//        btnStar
     }
 }

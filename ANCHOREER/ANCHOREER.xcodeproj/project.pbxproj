@@ -20,6 +20,8 @@
 		6E1BA3FE28033725005175FE /* FavoriteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1BA3FD28033725005175FE /* FavoriteListView.swift */; };
 		6E1BA401280340BF005175FE /* MovieDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1BA400280340BE005175FE /* MovieDetailVC.swift */; };
 		6E1BA403280341B4005175FE /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1BA402280341B4005175FE /* MovieDetailView.swift */; };
+		6E1BA40528046BD1005175FE /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1BA40428046BD1005175FE /* WebKit.framework */; };
+		6E1BA407280486E1005175FE /* Extension+UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1BA406280486E1005175FE /* Extension+UIStackView.swift */; };
 		6E850EDB28016FDC00D05430 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E850EDA28016FDC00D05430 /* AppDelegate.swift */; };
 		6E850EE428016FE100D05430 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E850EE328016FE100D05430 /* Assets.xcassets */; };
 		6E850EE728016FE100D05430 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E850EE528016FE100D05430 /* LaunchScreen.storyboard */; };
@@ -48,6 +50,8 @@
 		6E1BA3FD28033725005175FE /* FavoriteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListView.swift; sourceTree = "<group>"; };
 		6E1BA400280340BE005175FE /* MovieDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailVC.swift; sourceTree = "<group>"; };
 		6E1BA402280341B4005175FE /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
+		6E1BA40428046BD1005175FE /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		6E1BA406280486E1005175FE /* Extension+UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIStackView.swift"; sourceTree = "<group>"; };
 		6E850ED728016FDC00D05430 /* ANCHOREER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ANCHOREER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E850EDA28016FDC00D05430 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E850EE328016FE100D05430 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E1BA40528046BD1005175FE /* WebKit.framework in Frameworks */,
 				C9DF242434F5ADC77A6DEDAA /* Pods_ANCHOREER.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +91,7 @@
 		489E6B227F11B1AA772F3026 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E1BA40428046BD1005175FE /* WebKit.framework */,
 				055CC0E6FCAE50FCA0A53D4F /* Pods_ANCHOREER.framework */,
 			);
 			name = Frameworks;
@@ -207,6 +213,7 @@
 				6E850F0A2801D93400D05430 /* Extension+UIViewController.swift */,
 				6E850F0C2801D99B00D05430 /* Extension+UIView.swift */,
 				6E1BA3F32803052F005175FE /* Extension+String.swift */,
+				6E1BA406280486E1005175FE /* Extension+UIStackView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -334,6 +341,7 @@
 				6E1BA401280340BF005175FE /* MovieDetailVC.swift in Sources */,
 				6E1BA3F42803052F005175FE /* Extension+String.swift in Sources */,
 				6E1BA3F22802F545005175FE /* BaseVC.swift in Sources */,
+				6E1BA407280486E1005175FE /* Extension+UIStackView.swift in Sources */,
 				6E1BA3FC28033708005175FE /* FavoriteListVM.swift in Sources */,
 				6E850F08280183E100D05430 /* MovieListCell.swift in Sources */,
 				6E850EFE28017C1F00D05430 /* MovieListVC.swift in Sources */,
