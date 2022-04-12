@@ -10,8 +10,9 @@ import RxSwift
 import Alamofire
 import Toast
 
-typealias Success = (Data?) -> Void
-typealias Failure = (ErrorModel) -> Void
+//typealias Success = (Data?) -> Void
+//typealias Failure = (NSError) -> Void
+typealias MyResult = (Result<Data?, NSError>) -> Void
 
 protocol APIType {
 
@@ -40,16 +41,27 @@ class APIService {
     
     func request(api: APIType) -> Observable<Data?> {
         return Observable<Data?>.create { observer -> Disposable in
+//            Request.shared
+//                .method(api: api,
+//                        success: { data in
+//
+//                    observer.onNext(data)
+//                    observer.onCompleted()
+//                },
+//                        failure: { error in
+//                    observer.onError(error)
+//                })
+            
             Request.shared
-                .method(api: api,
-                        success: { data in
-                    
-                    observer.onNext(data)
+                .method(api: api) { result in
+                    switch result {
+                    case .success(let data):
+                        observer.onNext(data)
+                    case .failure(let error):
+                        observer.onError(error)
+                    }
                     observer.onCompleted()
-                },
-                        failure: { error in
-                    observer.onError(NSError(domain: error.errorMessage, code: Int(error.errorCode) ?? 0))
-                })
+                }
             
             return Disposables.create()
         }
@@ -61,8 +73,11 @@ class Request {
     static let shared = Request()
     
     func method(api: APIType,
-                success: @escaping Success,
-                failure: @escaping Failure) {
+                completion: @escaping MyResult
+//                ,
+//                success: @escaping Success,
+//                failure: @escaping Failure
+    ) {
         
         let alamofire = AF.request(api.path,
                                    method: api.method,
@@ -75,26 +90,23 @@ class Request {
             .response { response in
                 switch response.result {
                 case .success(let data):
-                    success(data)
-                case .failure(let error):
-                    self.handleError(response)
+//                    success(data)
+                    completion(.success(data))
+                case .failure:
+                    guard let error = self.handleError(response) else { return }
 //                    failure(error)
+                    completion(.failure(error))
+                    
                 }
             }
     }
     
-    private func handleError(_ response: DataResponse<Data?, AFError>) -> ErrorModel? {
+    private func handleError(_ response: DataResponse<Data?, AFError>) -> NSError? {
         if let result = response.data {
             if let error = try? JSONDecoder().decode(ErrorModel.self, from: result) {
-//                if !ignoreMessages.contains(error.message) {
-//                    // 4040 (미니플레이어 종료시)
-//                    error.code == 4040 ? print(error.code, error.message) : Toast(text: error.message).show()
-//                }
-                return error
+                return NSError(domain: error.errorMessage, code: Int(error.errorCode) ?? 0)
             }
         }
-
-//        Toast(text: "ToastDisconnect".localized()).show()
         return nil
     }
 }

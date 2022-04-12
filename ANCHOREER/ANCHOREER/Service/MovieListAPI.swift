@@ -27,15 +27,6 @@ enum MovieListAPI: APIType {
         }
     }
     
-//    var task: Task {
-//        switch self {
-//        case .post_my_car(let body):
-//            return .requestJSONEncodable(body)
-//        default:
-//            return .requestPlain
-//        }
-//    }
-    
     var headers: HTTPHeaders? {
         switch self {
         case .getSearchMovie:
