@@ -15,6 +15,7 @@ class MovieListCell: UITableViewCell {
     
     static let id = "MovieListCell"
     
+    var isFavorite = false
     var bag = DisposeBag()
     
     private let ivImage = UIImageView()
@@ -57,6 +58,7 @@ class MovieListCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
+        isFavorite = false
         bag = DisposeBag()
         btnStar.tintColor = .lightGray
     }
@@ -99,7 +101,9 @@ class MovieListCell: UITableViewCell {
         }
     }
     
-    func setValue(_ data: MovieListDto.Response.Item) {
+    func setValue(_ data: MovieListDto.Response.Item, isFavorite: Bool) {
+        self.isFavorite = isFavorite
+        
         let actors = String(data.actor.dropLast())
         
         if let url = URL(string: data.image ?? "") {
@@ -110,6 +114,18 @@ class MovieListCell: UITableViewCell {
         lblDirector.text = "감독: \(data.director.replace(of: "|"))"
         lblActor.text = "출연: \(actors.replace(of: "|", with: ", "))"
         lblGrade.text = "평점: \(data.userRating)"
-//        btnStar
+        btnStar.tintColor = isFavorite ? .yellow : .lightGray
+    }
+    
+    func updateFavorite(_ data: MovieListDto.Response.Item) {
+        isFavorite ?
+        FavoriteManager.shared.delete(data) :
+        FavoriteManager.shared.create(data)
+        
+        isFavorite = !isFavorite
+        btnStar.tintColor = isFavorite ? .yellow : .lightGray
+        
+        // 되는지 확인
+        print(FavoriteManager.shared.retrieve())
     }
 }

@@ -2,6 +2,11 @@ PODS:
   - Alamofire (5.5.0)
   - Differentiator (5.0.0)
   - Kingfisher (7.2.0)
+  - Realm (10.25.0):
+    - Realm/Headers (= 10.25.0)
+  - Realm/Headers (10.25.0)
+  - RealmSwift (10.25.0):
+    - Realm (= 10.25.0)
   - RxCocoa (6.2.0):
     - RxRelay (= 6.2.0)
     - RxSwift (= 6.2.0)
@@ -26,6 +31,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Kingfisher (~> 7.0)
+  - RealmSwift (~> 10)
   - RxCocoa (~> 6.2.0)
   - RxDataSources (~> 5.0)
   - RxGesture (~> 4.0.2)
@@ -41,6 +47,8 @@ SPEC REPOS:
     - Alamofire
     - Differentiator
     - Kingfisher
+    - Realm
+    - RealmSwift
     - RxCocoa
     - RxDataSources
     - RxGesture
@@ -56,6 +64,8 @@ SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   Kingfisher: 3ac0b75b155cabc0e544877d1a4deea29feece92
+  Realm: 22a82aaa0e73f3483e3a6df32549c4c5cd34aa63
+  RealmSwift: c2a635212400923edd3f828b8a37d55d3eb31863
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
@@ -67,6 +77,6 @@ SPEC CHECKSUMS:
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: d8ef34b3d3f3a6195c75373b99f1f9b42a021471
+PODFILE CHECKSUM: 448a3f8d50a05b090779fcfaff3e7b3dc09aa7b2
 
 COCOAPODS: 1.11.2

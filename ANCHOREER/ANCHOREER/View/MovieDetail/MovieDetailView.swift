@@ -99,7 +99,7 @@ class MovieDetailView: BaseView {
         }
     }
     
-    func setValue(_ data: MovieListDto.Response.Item) {
+    func setValue(_ data: MovieListDto.Response.Item, isFavorite: Bool) {
         let actors = String(data.actor.dropLast())
         
         if let url = URL(string: data.image ?? "") {
@@ -109,6 +109,6 @@ class MovieDetailView: BaseView {
         lblDirector.text = "감독: \(data.director.replace(of: "|"))"
         lblActor.text = "출연: \(actors.replace(of: "|", with: ", "))"
         lblGrade.text = "평점: \(data.userRating)"
-//        btnStar
+        btnStar.tintColor = isFavorite ? .yellow : .lightGray
     }
 }

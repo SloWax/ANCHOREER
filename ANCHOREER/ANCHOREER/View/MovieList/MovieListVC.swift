@@ -83,15 +83,17 @@ class MovieListVC: BaseVC {
                 .items(cellIdentifier: MovieListCell.id,
                        cellType: MovieListCell.self)
             ) { row, data, cell in
-                cell.setValue(data)
+                let favoriteList = FavoriteManager.shared.retrieve()
+                let isFavorite = favoriteList.contains { $0.link == data.link }
                 
-//                cell.btnStar
-//                    .rx
-//                    .tap
-//                    .bind { [weak self] in
-//                        guard let self = self else { return }
-//
-//                    }.disposed(by: cell.bag)
+                cell.setValue(data, isFavorite: isFavorite)
+                
+                cell.btnStar
+                    .rx
+                    .tap
+                    .bind {
+                        cell.updateFavorite(data)
+                    }.disposed(by: cell.bag)
             }.disposed(by: bag)
     }
 }

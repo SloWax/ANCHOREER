@@ -18,6 +18,8 @@ class MovieDetailVC: BaseVC, WKUIDelegate, WKNavigationDelegate {
     
     private let movieDetailView = MovieDetailView()
     
+    private var isFavorite = false
+    
     init(item: MovieListDto.Response.Item) {
         self.item = item
         super.init(nibName: nil, bundle: nil)
@@ -31,16 +33,38 @@ class MovieDetailVC: BaseVC, WKUIDelegate, WKNavigationDelegate {
         super.viewDidLoad()
         
         initialize()
+        bind()
     }
     
     private func initialize() {
         view = movieDetailView
-        movieDetailView.setValue(item)
+        
+        let favoriteList = FavoriteManager.shared.retrieve()
+        let isFavorite = favoriteList.contains { $0.link == item.link }
+        
+        self.isFavorite = isFavorite
+        movieDetailView.setValue(item, isFavorite: isFavorite)
         
         guard let url = URL(string: item.link) else { return }
         print("url: \(url)")
         
         let request = URLRequest(url: url)
         movieDetailView.wvView.load(request)
+    }
+    
+    private func bind() {
+        movieDetailView.btnStar
+            .rx
+            .tap
+            .bind { [weak self] in
+                guard let self = self else { return }
+                
+                self.isFavorite ?
+                FavoriteManager.shared.delete(self.item) :
+                FavoriteManager.shared.create(self.item)
+                
+                self.movieDetailView.btnStar.tintColor = self.isFavorite ? .yellow : .lightGray
+                self.isFavorite = !self.isFavorite
+            }.disposed(by: bag)
     }
 }
