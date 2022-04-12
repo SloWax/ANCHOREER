@@ -24,6 +24,12 @@ class MovieListVC: BaseVC {
         bind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.vm.searchMovie()
+    }
+    
     override func rightMenu() {
         let rootVC = FavoriteListVC()
         let navi = UINavigationController(rootViewController: rootVC)
@@ -84,7 +90,7 @@ class MovieListVC: BaseVC {
                        cellType: MovieListCell.self)
             ) { row, data, cell in
                 let favoriteList = FavoriteManager.shared.retrieve()
-                let isFavorite = favoriteList.contains { $0.link == data.link }
+                let isFavorite = favoriteList.contains { $0 == data }
                 
                 cell.setValue(data, isFavorite: isFavorite)
                 

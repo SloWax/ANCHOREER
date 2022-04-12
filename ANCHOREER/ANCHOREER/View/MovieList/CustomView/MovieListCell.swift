@@ -124,8 +124,5 @@ class MovieListCell: UITableViewCell {
         
         isFavorite = !isFavorite
         btnStar.tintColor = isFavorite ? .yellow : .lightGray
-        
-        // 되는지 확인
-        print(FavoriteManager.shared.retrieve())
     }
 }

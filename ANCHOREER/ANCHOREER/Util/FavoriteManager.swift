@@ -41,10 +41,13 @@ class FavoriteManager {
     }
     
     func delete(_ data: MovieListDto.Response.Item) {
+        let favoriteObjects = realm.objects(RealmItemModel.self)
         let toDelete = data.managedObject()
         
-        try! realm.write {
-            realm.delete(toDelete)
+        if let deleteIndex = favoriteObjects.firstIndex(where: { $0.link == toDelete.link }) {
+            try! realm.write {
+                realm.delete(favoriteObjects[deleteIndex])
+            }
         }
     }
 }
@@ -87,14 +90,3 @@ extension MovieListDto.Response.Item: Persistable {
         return module
     }
 }
-
-//struct Item {
-//    let title: String
-//    let link: String
-//    let image: String?
-//    let subtitle: String
-//    let pubDate: String
-//    let director: String
-//    let actor: String
-//    let userRating: String
-//}

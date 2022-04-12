@@ -44,6 +44,24 @@ class FavoriteListVC: BaseVC {
     }
     
     private func bind() {
-        
+        vm.output
+            .list
+            .bind(to: favoriteListView.tvList
+                .rx
+                .items(cellIdentifier: MovieListCell.id,
+                       cellType: MovieListCell.self)
+            ) { row, data, cell in
+                let favoriteList = FavoriteManager.shared.retrieve()
+                let isFavorite = favoriteList.contains { $0 == data }
+                
+                cell.setValue(data, isFavorite: isFavorite)
+                
+                cell.btnStar
+                    .rx
+                    .tap
+                    .bind {
+                        cell.updateFavorite(data)
+                    }.disposed(by: cell.bag)
+            }.disposed(by: bag)
     }
 }

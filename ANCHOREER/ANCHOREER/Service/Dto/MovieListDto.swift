@@ -19,7 +19,7 @@ struct MovieListDto: Codable {
         let display: Int
         let items: [Item]
         
-        struct Item: Codable {
+        struct Item: Codable, Equatable {
             let title: String
             let link: String
             let image: String?
@@ -27,7 +27,7 @@ struct MovieListDto: Codable {
             let pubDate: String
             let director: String
             let actor: String
-            let userRating: String 
+            let userRating: String
         }
     }
 }

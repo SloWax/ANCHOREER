@@ -63,8 +63,8 @@ class MovieDetailVC: BaseVC, WKUIDelegate, WKNavigationDelegate {
                 FavoriteManager.shared.delete(self.item) :
                 FavoriteManager.shared.create(self.item)
                 
-                self.movieDetailView.btnStar.tintColor = self.isFavorite ? .yellow : .lightGray
                 self.isFavorite = !self.isFavorite
+                self.movieDetailView.btnStar.tintColor = self.isFavorite ? .yellow : .lightGray
             }.disposed(by: bag)
     }
 }

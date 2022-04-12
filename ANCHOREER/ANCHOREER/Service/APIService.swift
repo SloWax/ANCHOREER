@@ -48,7 +48,7 @@ class APIService {
                     observer.onCompleted()
                 },
                         failure: { error in
-                    observer.onError(NSError(domain: "", code: 0))
+                    observer.onError(NSError(domain: error.errorMessage, code: Int(error.errorCode) ?? 0))
                 })
             
             return Disposables.create()
@@ -77,15 +77,13 @@ class Request {
                 case .success(let data):
                     success(data)
                 case .failure(let error):
-//                    let data = response.data
-                    return
-//                    handleError(response)
+                    self.handleError(response)
 //                    failure(error)
                 }
             }
     }
     
-    private func handleError(_ response: DataResponse<Any, AFError>) -> ErrorModel? {
+    private func handleError(_ response: DataResponse<Data?, AFError>) -> ErrorModel? {
         if let result = response.data {
             if let error = try? JSONDecoder().decode(ErrorModel.self, from: result) {
 //                if !ignoreMessages.contains(error.message) {
