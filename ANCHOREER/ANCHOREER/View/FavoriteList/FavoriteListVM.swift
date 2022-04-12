@@ -21,8 +21,5 @@ class FavoriteListVM: BaseVM {
     init(output: Output = Output()) {
         self.output = output
         super.init()
-        
-        let favoriteList = FavoriteManager.shared.retrieve()
-        self.output.list.accept(favoriteList)
     }
 }

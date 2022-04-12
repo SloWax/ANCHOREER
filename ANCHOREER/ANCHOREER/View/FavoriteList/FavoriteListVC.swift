@@ -23,6 +23,13 @@ class FavoriteListVC: BaseVC {
         bind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let favoriteList = FavoriteManager.shared.retrieve()
+        self.vm.output.list.accept(favoriteList)
+    }
+    
     override func leftMenu() {
         clearBag(vm: vm)
         dismiss(animated: true)
@@ -44,6 +51,19 @@ class FavoriteListVC: BaseVC {
     }
     
     private func bind() {
+        favoriteListView.tvList
+            .rx
+            .itemSelected
+            .bind { [weak self] indexPath in
+                guard let self = self else { return }
+                
+                let item = self.vm.output.list.value[indexPath.row]
+                let vc = MovieDetailVC(item: item)
+                let title = item.title.filterString(of: ["<b>", "</b>"])
+                
+                self.pushVC(vc, title: title)
+            }.disposed(by: bag)
+        
         vm.output
             .list
             .bind(to: favoriteListView.tvList
