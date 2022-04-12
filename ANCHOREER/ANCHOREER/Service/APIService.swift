@@ -8,7 +8,6 @@
 import Foundation
 import RxSwift
 import Alamofire
-import Toast
 
 
 typealias MyResult = (Result<Data?, NSError>) -> Void

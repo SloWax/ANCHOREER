@@ -44,7 +44,7 @@ class MovieListVM: BaseVM {
                     self.output.list.accept(res.items)
                 }
             } onError: { error in
-                print(error)
+                print("error: \(error)")
             }.disposed(by: bag)
     }
 }
