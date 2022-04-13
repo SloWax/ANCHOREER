@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
-import RxOptional
 
 
 class MovieListVC: BaseVC {
