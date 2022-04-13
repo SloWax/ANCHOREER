@@ -6,18 +6,17 @@ target 'ANCHOREER' do
   use_frameworks!
 
   # Pods for ANCHOREER
-
+  
+  #Rx
   pod 'RxSwift', '~> 6.2.0'
   pod 'RxCocoa', '~> 6.2.0'
   pod 'RxGesture', '~> 4.0.2'
-  pod 'RxDataSources', '~> 5.0'
-  pod 'RxOptional'
   
   #util
+  pod 'RealmSwift', '~>10'
   pod 'Kingfisher', '~> 7.0'
+  pod 'Alamofire', '~> 5.2'
   pod 'SnapKit', '~> 5.0.0'
   pod 'Then'
-  pod 'Toast'
-  pod 'Toast-Swift'
 
 end

@@ -1,17 +1,15 @@
 PODS:
-  - Differentiator (5.0.0)
+  - Alamofire (5.5.0)
   - Kingfisher (7.2.0)
+  - Realm (10.25.0):
+    - Realm/Headers (= 10.25.0)
+  - Realm/Headers (10.25.0)
+  - RealmSwift (10.25.0):
+    - Realm (= 10.25.0)
   - RxCocoa (6.2.0):
     - RxRelay (= 6.2.0)
     - RxSwift (= 6.2.0)
-  - RxDataSources (5.0.0):
-    - Differentiator (~> 5.0)
-    - RxCocoa (~> 6.0)
-    - RxSwift (~> 6.0)
   - RxGesture (4.0.4):
-    - RxCocoa (~> 6.0)
-    - RxSwift (~> 6.0)
-  - RxOptional (5.0.2):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
   - RxRelay (6.2.0):
@@ -19,50 +17,42 @@ PODS:
   - RxSwift (6.2.0)
   - SnapKit (5.0.1)
   - Then (2.7.0)
-  - Toast (4.0.0)
-  - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.2)
   - Kingfisher (~> 7.0)
+  - RealmSwift (~> 10)
   - RxCocoa (~> 6.2.0)
-  - RxDataSources (~> 5.0)
   - RxGesture (~> 4.0.2)
-  - RxOptional
   - RxSwift (~> 6.2.0)
   - SnapKit (~> 5.0.0)
   - Then
-  - Toast
-  - Toast-Swift
 
 SPEC REPOS:
   trunk:
-    - Differentiator
+    - Alamofire
     - Kingfisher
+    - Realm
+    - RealmSwift
     - RxCocoa
-    - RxDataSources
     - RxGesture
-    - RxOptional
     - RxRelay
     - RxSwift
     - SnapKit
     - Then
-    - Toast
-    - Toast-Swift
 
 SPEC CHECKSUMS:
-  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   Kingfisher: 3ac0b75b155cabc0e544877d1a4deea29feece92
+  Realm: 22a82aaa0e73f3483e3a6df32549c4c5cd34aa63
+  RealmSwift: c2a635212400923edd3f828b8a37d55d3eb31863
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
-  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
-  RxOptional: 3664964c96b69dd20c9cf78bdfe546615e26eca8
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
-  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
-  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 8be122e4ad5b4443ce55cf46e74f02a42f7c6b0b
+PODFILE CHECKSUM: 2c199965e34ebb623967db6139ab3588dc866062
 
 COCOAPODS: 1.11.2
