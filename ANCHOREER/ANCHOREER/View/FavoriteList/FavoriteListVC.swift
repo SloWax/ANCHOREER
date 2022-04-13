@@ -26,6 +26,7 @@ class FavoriteListVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // 화면 전환 시 보여지고 있는 리스트 즐겨찾기 불러오기
         let favoriteList = FavoriteManager.shared.retrieve()
         self.vm.output.list.accept(favoriteList)
     }
@@ -51,7 +52,7 @@ class FavoriteListVC: BaseVC {
     }
     
     private func bind() {
-        favoriteListView.tvList
+        favoriteListView.tvList // cell 선택 시 화면 전환
             .rx
             .itemSelected
             .bind { [weak self] indexPath in
@@ -64,19 +65,16 @@ class FavoriteListVC: BaseVC {
                 self.pushVC(vc, title: title)
             }.disposed(by: bag)
         
-        vm.output
+        vm.output // 즐겨찾기 한 영화 목록
             .list
             .bind(to: favoriteListView.tvList
                 .rx
                 .items(cellIdentifier: MovieListCell.id,
                        cellType: MovieListCell.self)
             ) { row, data, cell in
-                let favoriteList = FavoriteManager.shared.retrieve()
-                let isFavorite = favoriteList.contains { $0 == data }
+                cell.setValue(data, isFavorite: true)
                 
-                cell.setValue(data, isFavorite: isFavorite)
-                
-                cell.btnStar
+                cell.btnStar // cell 내 즐겨찾기 button
                     .rx
                     .tap
                     .bind {

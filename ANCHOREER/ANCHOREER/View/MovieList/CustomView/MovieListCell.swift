@@ -58,6 +58,7 @@ class MovieListCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
+        // cell 재사용 시 초기값
         isFavorite = false
         bag = DisposeBag()
         btnStar.tintColor = .lightGray
@@ -118,6 +119,7 @@ class MovieListCell: UITableViewCell {
     }
     
     func updateFavorite(_ data: MovieListDto.Response.Item) {
+        // 즐겨찾기 C/D 분기
         isFavorite ?
         FavoriteManager.shared.delete(data) :
         FavoriteManager.shared.create(data)

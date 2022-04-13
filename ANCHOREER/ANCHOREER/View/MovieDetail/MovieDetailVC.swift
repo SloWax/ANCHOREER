@@ -39,6 +39,7 @@ class MovieDetailVC: BaseVC, WKUIDelegate, WKNavigationDelegate {
     private func initialize() {
         view = movieDetailView
         
+        // DB에 있는 리스트를 가져와 현재 표현하는 영화가 즐겨찾기 되어있는 객체인지 확인
         let favoriteList = FavoriteManager.shared.retrieve()
         let isFavorite = favoriteList.contains { $0.link == item.link }
         
@@ -53,7 +54,7 @@ class MovieDetailVC: BaseVC, WKUIDelegate, WKNavigationDelegate {
     }
     
     private func bind() {
-        movieDetailView.btnStar
+        movieDetailView.btnStar // 즐겨찾기 button
             .rx
             .tap
             .bind { [weak self] in

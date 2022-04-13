@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import RxSwift
 
-
+// Endpoint 별 타입 정의
 enum MovieListAPI: APIType {
     case getSearchMovie(query: String)
     

@@ -27,6 +27,7 @@ class MovieListVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // 화면 전환 시 보여지고 있는 리스트 즐겨찾기 refresh
         self.vm.searchMovie()
     }
     
@@ -53,14 +54,14 @@ class MovieListVC: BaseVC {
     }
     
     private func bind() {
-        movieListView.tfSearch
+        movieListView.tfSearch // 검색 keyword
             .rx
             .text
             .orEmpty
             .bind(to: self.vm.input.keyword)
             .disposed(by: bag)
         
-        movieListView.tfSearch
+        movieListView.tfSearch // 영화 검색 시점
             .rx
             .controlEvent(.editingDidEnd)
             .bind { [weak self] in
@@ -69,7 +70,7 @@ class MovieListVC: BaseVC {
                 self.vm.searchMovie()
             }.disposed(by: bag)
         
-        movieListView.tvList
+        movieListView.tvList // cell 선택 시 화면 전환
             .rx
             .itemSelected
             .bind { [weak self] indexPath in
@@ -82,19 +83,25 @@ class MovieListVC: BaseVC {
                 self.pushVC(vc, title: title)
             }.disposed(by: bag)
         
-        vm.output
+        vm.output // 영화 리스트 tableView
             .list
             .bind(to: movieListView.tvList
                 .rx
                 .items(cellIdentifier: MovieListCell.id,
                        cellType: MovieListCell.self)
             ) { row, data, cell in
+                
+                /**
+                 DB에 있는 리스트를 가져와 현재 표현하는 영화가 즐겨찾기 되어있는 객체인지 확인
+                 검색 키워드에 따라 title이 다른 response 받아 같은 영화여도 다른 영화로 확인
+                 객체 id가 없어 link 로 대체하여 즐겨찾기 된 객체인지 확인
+                 **/
                 let favoriteList = FavoriteManager.shared.retrieve()
-                let isFavorite = favoriteList.contains { $0 == data }
+                let isFavorite = favoriteList.contains { $0.link == data.link }
                 
                 cell.setValue(data, isFavorite: isFavorite)
                 
-                cell.btnStar
+                cell.btnStar // cell 내 즐겨찾기 button
                     .rx
                     .tap
                     .bind {

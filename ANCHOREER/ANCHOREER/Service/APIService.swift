@@ -36,8 +36,10 @@ struct NaverHeaderValue {
 
 
 class APIService {
+    
     static let shared = APIService()
     
+    // Observable 생성
     func request(api: APIType) -> Observable<Data?> {
         return Observable<Data?>.create { [weak self] observer -> Disposable in
             self?.method(api: api) { result in
@@ -54,6 +56,7 @@ class APIService {
         }
     }
     
+    // alamofire 통신
     private func method(api: APIType, completion: @escaping MyResult) {
         let alamofire = AF.request(api.path,
                                    method: api.method,
@@ -74,6 +77,7 @@ class APIService {
             }
     }
     
+    // error handling
     private func handleError(_ response: DataResponse<Data?, AFError>) -> NSError? {
         if let result = response.data, let error = try? JSONDecoder().decode(ErrorModel.self, from: result) {
             return NSError(domain: error.errorMessage, code: Int(error.errorCode) ?? 0)

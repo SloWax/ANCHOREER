@@ -13,11 +13,11 @@ import RxCocoa
 
 class MovieListVM: BaseVM {
     struct Input {
-        let keyword = BehaviorRelay<String>(value: "")
+        let keyword = BehaviorRelay<String>(value: "") // 검색 키워드
     }
     
     struct Output {
-        let list = BehaviorRelay<[MovieListDto.Response.Item]>(value: [])
+        let list = BehaviorRelay<[MovieListDto.Response.Item]>(value: []) // 검색 결과 리스트
     }
     
     let input: Input
@@ -40,7 +40,6 @@ class MovieListVM: BaseVM {
                 guard let self = self else { return }
                 
                 self.task(MovieListDto.Response.self, data: data) { res in
-                    
                     self.output.list.accept(res.items)
                 }
             } onError: { error in

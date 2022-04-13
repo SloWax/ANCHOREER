@@ -15,6 +15,7 @@ protocol Persistable {
     func managedObject() -> ManagedObject
 }
 
+// 즐겨찾기 Manager
 class FavoriteManager {
     static let shared = FavoriteManager()
     
@@ -52,6 +53,7 @@ class FavoriteManager {
     }
 }
 
+// 즐겨찾기 DB 모델 정의
 class RealmItemModel : Object {
     @objc dynamic var title: String = ""
     @objc dynamic var link: String = ""
@@ -63,6 +65,7 @@ class RealmItemModel : Object {
     @objc dynamic var userRating: String = ""
 }
 
+// Realm에 사용하기 위한 struct <-> class Convert
 extension MovieListDto.Response.Item: Persistable {
 
     init(managedObject: RealmItemModel) {
