@@ -1,4 +1,4 @@
-# ANCHOREER
+# MovieSearch
 
 
 
@@ -8,7 +8,9 @@
 <img width="200" alt="7" src="https://user-images.githubusercontent.com/62653558/163088343-5d2ba883-3eed-43a2-bfe5-d305d1e480e4.PNG">
 </p>
 
-- 네이버 영화 API를 활용한 영화 검색 앱
+- 네이버 영화 API를 활용한 영화 검색 및 즐겨찾기 앱
+- RealmSwift을 활용한 즐겨찾기 DB 구성
+- RxSwift, Alamofire을 활용한 비동기 처리
 
 - 개발환경: Xcode 13.2.1
 
