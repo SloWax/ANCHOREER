@@ -9,6 +9,7 @@
 </p>
 
 - 네이버 영화 API를 활용한 영화 검색 및 즐겨찾기 앱
+- RealmSwift 연습용 프로젝트
 - RealmSwift을 활용한 즐겨찾기 DB 구성
 - RxSwift, Alamofire을 활용한 비동기 처리
 
